@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démonstration d'Animation SVG</title>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <style>
+        .svg-attributes-demo {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<svg class="svg-attributes-demo" viewBox="0 0 128 128">
+    <defs>
+        <filter id="turbulence">
+            <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="1" result="turbulence" />
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="25" />
+        </filter>
+    </defs>
+    <polygon points="64,128 8.574,96 8.574,32 64,0 119.426,32 119.426,96" fill="lightblue" filter="url(#turbulence)" />
+</svg>
+
+<script>
+    anime({
+        targets: ['.svg-attributes-demo polygon', 'feTurbulence', 'feDisplacementMap'],
+        points: '64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96',
+        baseFrequency: 0,
+        scale: 1,
+        loop: true,
+        direction: 'alternate',
+        easing: 'easeInOutExpo'
+    });
+</script>
+
+</body>
+</html>
